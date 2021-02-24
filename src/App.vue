@@ -78,7 +78,7 @@ export default defineComponent({
       },
       {
         title: 'Camera',
-        url: '/folder/Spam',
+        url: '/camera',
         iosIcon: warningOutline,
         mdIcon: warningSharp
       }
