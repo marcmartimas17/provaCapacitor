@@ -1,42 +1,64 @@
 <template>
   <ion-page>
-    <ion-header :translucent="true">
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-menu-button color="primary"></ion-menu-button>
-        </ion-buttons>
-        <ion-title>{{ $route.params.id }}</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    
     <ion-content :fullscreen="true">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">{{ $route.params.id }}</ion-title>
-        </ion-toolbar>
-      </ion-header>
-    
-      <div id="container">
-        <strong class="capitalize">{{ $route.params.id }}</strong>
-        <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-      </div>
+      <ion-card>
+        <ion-item>
+          <ion-icon :icon="location" slot="start" class="icon-xl"></ion-icon>
+          <ion-title>Geolocation</ion-title>
+        </ion-item>
+
+        <ion-card-content>
+          <ion-list>
+            <ion-item v-if="latitude">
+              <ion-icon :icon="navigate" slot="start"></ion-icon>
+              <ion-text>Latitude</ion-text>
+              <ion-title>{{ latitude }}</ion-title>
+            </ion-item>
+            <ion-item v-if="longitude">
+              <ion-icon :icon="navigate" slot="start"></ion-icon>
+              <ion-text>Longitude</ion-text>
+              <ion-title>{{ longitude }}</ion-title>
+            </ion-item>
+          </ion-list>
+          <ion-button @click="getGeoLocation()">Get location</ion-button>
+        </ion-card-content>
+      </ion-card>
     </ion-content>
   </ion-page>
 </template>
 
-<script lang="ts">
-import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
+<script>
+import { IonPage, IonContent, IonCard, IonCardContent, IonList,
+        IonItem, IonTitle, IonText, IonButton, IonIcon,
+} from '@ionic/vue';
+import { Plugins } from '@capacitor/core';
+const { Geolocation: geo } = Plugins;
+import { location, navigate, } from 'ionicons/icons';
+
 
 export default {
-  name: 'Folder',
+  name: 'Geolocation',
   components: {
-    IonButtons,
-    IonContent,
-    IonHeader,
-    IonMenuButton,
-    IonPage,
-    IonTitle,
-    IonToolbar
+    IonPage, IonContent, IonCard, IonCardContent, IonList,
+    IonItem, IonTitle, IonText, IonButton, IonIcon,
+  },
+  data() {
+    return {
+      latitude: null,
+      longitude: null,
+    }
+  },
+  setup() {
+    return {
+      location, navigate,
+    }
+  },
+  methods: {
+    async getGeoLocation () {
+      const coords = await geo.getCurrentPosition();
+      this.latitude = coords.coords.latitude;
+      this.longitude = coords.coords.longitude;
+    }
   }
 }
 </script>
@@ -65,5 +87,9 @@ export default {
 
 #container a {
   text-decoration: none;
+}
+.button-xl {
+  width: 50px;
+  height: 50px;
 }
 </style>
