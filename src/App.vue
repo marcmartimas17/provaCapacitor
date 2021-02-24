@@ -72,7 +72,7 @@ export default defineComponent({
       },
       {
         title: 'Notifications',
-        url: '/folder/Trash',
+        url: '/notifications',
         iosIcon: trashOutline,
         mdIcon: trashSharp
       },
