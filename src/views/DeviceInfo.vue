@@ -5,39 +5,85 @@
         <ion-buttons slot="start">
           <ion-menu-button color="primary"></ion-menu-button>
         </ion-buttons>
-        <ion-title>{{ $route.params.id }}</ion-title>
       </ion-toolbar>
     </ion-header>
     
     <ion-content :fullscreen="true">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">{{ $route.params.id }}</ion-title>
-        </ion-toolbar>
-      </ion-header>
-    
-      <div id="container">
-        <strong class="capitalize">{{ $route.params.id }}</strong>
-        <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-      </div>
+      <ion-card>
+        <ion-item>
+          <ion-icon :icon="informationCircle" slot="start"></ion-icon>
+          <ion-title>Device Info</ion-title>
+        </ion-item>
+
+        <ion-card-content>
+          <ion-list>
+
+            <ion-item v-if="operatingSystem != 'unknown'">
+              <ion-text>Operating System</ion-text>
+              <ion-title>{{ operatingSystem }}</ion-title>
+            </ion-item>
+            <ion-item v-if="platform">
+              <ion-text>Platform</ion-text>
+              <ion-title>{{ platform }}</ion-title>
+            </ion-item>
+            <ion-item v-if="model">
+              <ion-text>Model</ion-text>
+              <ion-title>{{ model }}</ion-title>
+            </ion-item>
+            <ion-item v-if="uuid">
+              <ion-text>UUID</ion-text>
+              <ion-title>{{ uuid }}</ion-title>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
     </ion-content>
   </ion-page>
 </template>
 
-<script lang="ts">
-import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
+<script>
+import { IonPage, IonContent, IonCard, IonCardContent, IonList,
+  IonItem, IonTitle, IonText, IonIcon, IonCardHeader, } from '@ionic/vue';
+import { informationCircle, navigate, } from 'ionicons/icons';
+import { Plugins } from '@capacitor/core';
+const { Device } = Plugins;
 
 export default {
   name: 'Folder',
   components: {
-    IonButtons,
-    IonContent,
-    IonHeader,
-    IonMenuButton,
-    IonPage,
-    IonTitle,
-    IonToolbar
-  }
+    IonPage, IonContent, IonCard, IonCardContent, IonList,
+    IonItem, IonTitle, IonText, IonIcon, IonCardHeader,
+  },
+  data () {
+    return {
+      info: null,
+      operatingSystem: null,
+      platform: null,
+      model: null,
+      uuid: null,
+    }
+  },
+  setup() {
+    return {
+      navigate, informationCircle,
+    }
+
+  },
+  methods: {
+    async getInfo() {
+      const info = await Device.getInfo();
+      this.operatingSystem = info.operatingSystem;
+      this.platform = info.platform;
+      this.model = info.model;
+      this.uuid = info.uuid;
+
+      console.log(info)
+    }
+  },
+  mounted () {
+    this.getInfo();
+  },
+
 }
 </script>
 
