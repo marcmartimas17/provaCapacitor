@@ -1,9 +1,16 @@
 <template>
   <ion-page>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button color="primary"></ion-menu-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
     <ion-content :fullscreen="true">
       <ion-card>
         <ion-item>
-          <ion-icon :icon="location" slot="start" class="icon-xl"></ion-icon>
+          <ion-icon :icon="location" slot="start"></ion-icon>
           <ion-title>Geolocation</ion-title>
         </ion-item>
 
@@ -30,6 +37,8 @@
 <script>
 import { IonPage, IonContent, IonCard, IonCardContent, IonList,
         IonItem, IonTitle, IonText, IonButton, IonIcon,
+
+        loadingController,
 } from '@ionic/vue';
 import { Plugins } from '@capacitor/core';
 const { Geolocation: geo } = Plugins;
@@ -41,6 +50,7 @@ export default {
   components: {
     IonPage, IonContent, IonCard, IonCardContent, IonList,
     IonItem, IonTitle, IonText, IonButton, IonIcon,
+
   },
   data() {
     return {
@@ -55,9 +65,16 @@ export default {
   },
   methods: {
     async getGeoLocation () {
+      const loading = await loadingController
+        .create({
+          cssClass: 'my-custom-class',
+          message: 'Searching geolocation...',
+        });
+      await loading.present();
       const coords = await geo.getCurrentPosition();
       this.latitude = coords.coords.latitude;
       this.longitude = coords.coords.longitude;
+      await loading.dismiss();
     }
   }
 }
@@ -87,9 +104,5 @@ export default {
 
 #container a {
   text-decoration: none;
-}
-.button-xl {
-  width: 50px;
-  height: 50px;
 }
 </style>
