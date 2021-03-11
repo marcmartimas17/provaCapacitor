@@ -15,7 +15,7 @@
           <ion-title size="large">{{ $route.params.id }}</ion-title>
         </ion-toolbar>
       </ion-header>
-    
+
       <div id="container">
         <strong class="capitalize">{{ $route.params.id }}</strong>
         <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
@@ -24,11 +24,14 @@
   </ion-page>
 </template>
 
-<script lang="ts">
+<script>
 import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
+import { Plugins } from "@capacitor/core";
+import { } from "ionicons/icons";
+const { LocalNotifications } = Plugins;
 
 export default {
-  name: 'Folder',
+  name: 'Notifications',
   components: {
     IonButtons,
     IonContent,
@@ -37,7 +40,30 @@ export default {
     IonPage,
     IonTitle,
     IonToolbar
-  }
+  },
+  mounted() {
+    this.notification()
+  },
+  methods: {
+    async notification () {
+      const notifs = await LocalNotifications.schedule({
+        notifications: [
+          {
+            title: "Title",
+            body: "Body",
+            id: 1,
+            schedule: {at: new Date(Date.now() + 1000 * 5)},
+            sound: null,
+            attachments: null,
+            actionTypeId: "",
+            extra: null
+          }
+        ]
+      });
+      console.log('scheduled notifications', notifs);
+    }
+  },
+
 }
 </script>
 

@@ -26,6 +26,7 @@ import { IonApp, IonContent, IonIcon, IonItem, IonLabel, IonList, IonListHeader,
 import { defineComponent, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { location, informationCircle,
+        bicycleOutline, bicycleSharp,
         shareSocialOutline, shareSocialSharp,
         notificationsOutline, notificationsSharp,
         alertCircleOutline, alertCircleSharp,
@@ -74,6 +75,12 @@ export default defineComponent({
         url: '/share_api',
         iosIcon: shareSocialOutline,
         mdIcon: shareSocialSharp
+      },
+      {
+        title: 'Motion',
+        url: '/motion',
+        iosIcon: bicycleOutline,
+        mdIcon: bicycleSharp
       },
       {
         title: 'Notifications',

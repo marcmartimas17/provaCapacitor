@@ -23,6 +23,10 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import ('../views/ShareApi.vue')
   },
   {
+    path: '/motion',
+    component: () => import ('../views/Motion.vue')
+  },
+  {
     path: '/notifications',
     component: () => import ('../views/Notifications.vue')
   },
