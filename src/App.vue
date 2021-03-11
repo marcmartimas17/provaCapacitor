@@ -4,8 +4,8 @@
       <ion-menu content-id="main-content" type="overlay">
         <ion-content>
           <ion-list id="inbox-list">
-            <ion-list-header>Inbox</ion-list-header>
-            <ion-note>hi@ionicframework.com</ion-note>
+            <ion-list-header>Capacitor App</ion-list-header>
+            <ion-note>Marc Martí Mas</ion-note>
   
             <ion-menu-toggle auto-hide="false" v-for="(p, i) in appPages" :key="i">
               <ion-item @click="selectedIndex = i" router-direction="root" :router-link="p.url" lines="none" detail="false" class="hydrated" :class="{ selected: selectedIndex === i }">
@@ -26,6 +26,10 @@ import { IonApp, IonContent, IonIcon, IonItem, IonLabel, IonList, IonListHeader,
 import { defineComponent, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { location, informationCircle,
+        shareSocialOutline, shareSocialSharp,
+        notificationsOutline, notificationsSharp,
+        alertCircleOutline, alertCircleSharp,
+        cameraOutline, cameraSharp,
         archiveOutline, archiveSharp, bookmarkOutline, bookmarkSharp, heartOutline, heartSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, trashOutline, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
 
 export default defineComponent({
@@ -68,20 +72,26 @@ export default defineComponent({
       {
         title: 'Share',
         url: '/share_api',
-        iosIcon: archiveOutline,
-        mdIcon: archiveSharp
+        iosIcon: shareSocialOutline,
+        mdIcon: shareSocialSharp
       },
       {
         title: 'Notifications',
         url: '/notifications',
-        iosIcon: trashOutline,
-        mdIcon: trashSharp
+        iosIcon: notificationsOutline,
+        mdIcon: notificationsSharp
+      },
+      {
+        title: 'Toast',
+        url: '/toast',
+        iosIcon: alertCircleOutline,
+        mdIcon: alertCircleSharp
       },
       {
         title: 'Camera',
         url: '/camera',
-        iosIcon: warningOutline,
-        mdIcon: warningSharp
+        iosIcon: cameraOutline,
+        mdIcon: cameraSharp
       }
     ];
 

@@ -37,7 +37,6 @@
 <script>
 import { IonPage, IonContent, IonCard, IonCardContent, IonList,
         IonItem, IonTitle, IonText, IonButton, IonIcon,
-
         loadingController,
 } from '@ionic/vue';
 import { Plugins } from '@capacitor/core';

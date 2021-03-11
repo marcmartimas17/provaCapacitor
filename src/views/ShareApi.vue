@@ -10,33 +10,37 @@
     </ion-header>
     
     <ion-content :fullscreen="true">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">{{ $route.params.id }}</ion-title>
-        </ion-toolbar>
-      </ion-header>
-    
-      <div id="container">
-        <strong class="capitalize">{{ $route.params.id }}</strong>
-        <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-      </div>
+      <ion-button @click="share">Share</ion-button>
     </ion-content>
   </ion-page>
 </template>
 
 <script lang="ts">
 import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
+import { Plugins } from "@capacitor/core";
+import { shareSocial, } from "ionicons/icons";
+const { Share } = Plugins;
 
 export default {
   name: 'Folder',
   components: {
-    IonButtons,
-    IonContent,
-    IonHeader,
-    IonMenuButton,
-    IonPage,
-    IonTitle,
-    IonToolbar
+    IonButtons, IonContent, IonHeader, IonMenuButton, IonPage,
+    IonTitle, IonToolbar,
+  },
+  setup() {
+    return {
+      shareSocial,
+    }
+  },
+  methods: {
+    async share () {
+      await Share.share({
+        title: 'Compartir Laravel Server',
+        text: "Al següent enllaç pots trobar la web Laravel Server en producció: ",
+        url: 'https://laravelserver.marcmartimas.codes/',
+        dialogTitle: "S'ha compartit correctament"
+      });
+    }
   }
 }
 </script>

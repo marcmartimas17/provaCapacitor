@@ -8,20 +8,19 @@
         <ion-title>{{ $route.params.id }}</ion-title>
       </ion-toolbar>
     </ion-header>
-    
+
     <ion-content :fullscreen="true">
-      <ion-button @click="vibrate()">Vibrate</ion-button>
+      <ion-button @click="showToast()">Toast</ion-button>
     </ion-content>
   </ion-page>
 </template>
 
 <script lang="ts">
 import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage,
-        IonTitle, IonToolbar, IonButton, } from '@ionic/vue';
+  IonTitle, IonToolbar, IonButton, } from '@ionic/vue';
 import { Plugins } from "@capacitor/core";
+const { Toast } = Plugins;
 import {  } from 'ionicons/icons';
-
-const { Haptics } = Plugins;
 
 export default {
   name: 'Folder',
@@ -36,9 +35,10 @@ export default {
     IonButton,
   },
   methods: {
-    vibrate () {
-      navigator.vibrate(200);
-      /* No funciona - Haptics.vibrate(); */
+    async showToast () {
+      await Toast.show({
+        text: 'Això és un toast!'
+      });
     }
 
   }
