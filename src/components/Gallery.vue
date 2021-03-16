@@ -6,7 +6,9 @@
       </ion-toolbar>
     </ion-header>
     <ion-content>
-      <h1>Galeria</h1>
+      <div>
+        <h1>Galeria</h1>
+      </div>
     </ion-content>
   </ion-page>
 
@@ -22,6 +24,11 @@ const { Camera } = Plugins;
 
 export default {
   name: 'Galeria',
+  props: {
+    photos: {
+
+    }
+  },
   setup() {
     return {
       close, checkmarkCircleOutline

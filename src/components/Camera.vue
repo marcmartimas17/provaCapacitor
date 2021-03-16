@@ -17,8 +17,6 @@ import { IonPage, IonHeader, IonTitle, IonToolbar, IonContent,
 
 } from '@ionic/vue';
 import { close, checkmarkCircleOutline, } from 'ionicons/icons';
-import { Plugins, CameraResultType, CameraSource, } from "@capacitor/core";
-const { Camera } = Plugins;
 
 export default {
   name: 'Camera',
@@ -31,17 +29,9 @@ export default {
     IonPage, IonHeader, IonTitle, IonToolbar, IonContent,
   },
   methods: {
-    async takePhoto () {
-      const cameraPhoto = await Camera.getPhoto({
-        resultType: CameraResultType.Uri,
-        source: CameraSource.Camera,
-        quality: 100
-      });
-    }
+
   },
-  mounted() {
-    this.takePhoto()
-  }
+
 }
 </script>
 
