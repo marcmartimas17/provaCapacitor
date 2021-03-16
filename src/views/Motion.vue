@@ -38,21 +38,20 @@
 </template>
 
 <script>
-import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
+import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage,
+        IonTitle, IonToolbar, IonIcon, IonItem, IonText, IonList,
+        IonButton, IonCard, IonCardContent,
+} from '@ionic/vue';
 import { Plugins } from "@capacitor/core";
 import { bicycle, speedometer, arrowUp, arrowForward,} from "ionicons/icons";
 const { Motion } = Plugins;
 
 export default {
-  name: 'Notifications',
+  name: 'Motion',
   components: {
-    IonButtons,
-    IonContent,
-    IonHeader,
-    IonMenuButton,
-    IonPage,
-    IonTitle,
-    IonToolbar
+    IonButtons,IonContent, IonHeader, IonMenuButton, IonPage,
+    IonTitle, IonToolbar, IonIcon, IonItem, IonText, IonList,
+    IonButton, IonCard, IonCardContent,
   },
   setup() {
     return {
