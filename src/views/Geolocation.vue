@@ -37,7 +37,7 @@
 <script>
 import { IonPage, IonContent, IonCard, IonCardContent, IonList,
         IonItem, IonTitle, IonText, IonButton, IonIcon,
-        loadingController,
+        IonMenuButton, IonButtons, IonToolbar, IonHeader,  loadingController,
 } from '@ionic/vue';
 import { Plugins } from '@capacitor/core';
 const { Geolocation: geo } = Plugins;
@@ -49,6 +49,7 @@ export default {
   components: {
     IonPage, IonContent, IonCard, IonCardContent, IonList,
     IonItem, IonTitle, IonText, IonButton, IonIcon,
+    IonMenuButton, IonButtons, IonToolbar, IonHeader,
 
   },
   data() {

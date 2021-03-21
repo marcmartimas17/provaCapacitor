@@ -16,7 +16,9 @@
 </template>
 
 <script lang="ts">
-import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
+import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage,
+        IonTitle, IonToolbar, IonButton,
+} from '@ionic/vue';
 import { Plugins } from "@capacitor/core";
 import { shareSocial, } from "ionicons/icons";
 const { Share } = Plugins;
@@ -25,7 +27,7 @@ export default {
   name: 'Folder',
   components: {
     IonButtons, IonContent, IonHeader, IonMenuButton, IonPage,
-    IonTitle, IonToolbar,
+    IonTitle, IonToolbar, IonButton,
   },
   setup() {
     return {
