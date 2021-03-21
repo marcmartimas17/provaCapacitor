@@ -6,32 +6,47 @@
       </ion-toolbar>
     </ion-header>
     <ion-content>
-      <h1>Càmera</h1>
+
+      <div class="center-screen" v-if="photo == null">
+        <h1>Fes una foto i guarda-la a la galeria</h1>
+      </div>
+
+      <ion-img v-if="photo != null" :src="photo.webviewPath" class="photo"></ion-img>
+      <div class="ion-text-center">
+        <ion-button v-if="photo != null" @click="savePhoto">
+          <ion-icon :icon="save" class="margin-5px"></ion-icon>
+          Guardar
+        </ion-button>
+      </div>
     </ion-content>
   </ion-page>
 
 </template>
 
 <script>
-import { IonPage, IonHeader, IonTitle, IonToolbar, IonContent,
+import { IonPage, IonHeader, IonTitle, IonToolbar, IonContent, IonImg, IonIcon, IonButton,
 
 } from '@ionic/vue';
-import { close, checkmarkCircleOutline, } from 'ionicons/icons';
+import { save, } from 'ionicons/icons';
 
 export default {
   name: 'Camera',
+  props: {
+    photo: {},
+  },
   setup() {
     return {
-      close, checkmarkCircleOutline
+      save,
     }
   },
   components: {
-    IonPage, IonHeader, IonTitle, IonToolbar, IonContent,
+    IonPage, IonHeader, IonTitle, IonToolbar, IonContent, IonImg, IonIcon, IonButton,
   },
   methods: {
-
+    savePhoto () {
+      this.$emit('save-photo', this.photo);
+    }
   },
-
 }
 </script>
 
@@ -51,5 +66,18 @@ export default {
 }
 .button-accept {
   margin-top: 50px;
+}
+.center-screen {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.photo {
+  margin: 20px auto;
+  width:50%;
+}
+.margin-5px {
+  margin: 0px 10px 0px 0px;
 }
 </style>

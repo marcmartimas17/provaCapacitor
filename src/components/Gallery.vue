@@ -6,21 +6,23 @@
       </ion-toolbar>
     </ion-header>
     <ion-content>
-      <div>
-        <h1>Galeria</h1>
-      </div>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="4" :key="photo.filepath" v-for="photo in photos">
+            <ion-img :src="photo.webviewPath"></ion-img>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-content>
   </ion-page>
 
 </template>
 
 <script>
-import { IonPage, IonHeader, IonTitle, IonButtons,  IonToolbar, IonContent, IonIcon
+import { IonPage, IonHeader, IonTitle, IonToolbar, IonContent, IonImg, IonCol, IonRow, IonGrid,
 
 } from '@ionic/vue';
 import { close, checkmarkCircleOutline, } from 'ionicons/icons';
-import { Plugins, CameraResultType, CameraSource, CameraPhoto, Capacitor, FilesystemDirectory } from "@capacitor/core";
-const { Camera } = Plugins;
 
 export default {
   name: 'Galeria',
@@ -35,11 +37,11 @@ export default {
     }
   },
   components: {
-    IonPage, IonHeader, IonTitle, IonButtons, IonToolbar, IonContent, IonIcon,
+    IonPage, IonHeader, IonTitle, IonToolbar, IonContent, IonImg, IonCol, IonRow, IonGrid,
   },
   methods: {
 
-  }
+  },
 }
 </script>
 
