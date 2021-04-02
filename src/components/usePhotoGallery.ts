@@ -10,6 +10,7 @@ export function usePhotoGallery () {
     const PHOTO_STORAGE = "photos";
     const { Camera, Filesystem, Storage } = Plugins;
     const photos = ref<Photo[]> ([]);
+    let currentPhoto = null;
 
     const cachePhotos = () => {
         Storage.set({
@@ -71,15 +72,25 @@ export function usePhotoGallery () {
             source: CameraSource.Camera,
             quality: 100
         });
+        currentPhoto = cameraPhoto;   
+        return currentPhoto;  
+    };
 
+    const savePhoto = async (cameraPhoto: CameraPhoto) => {
         const fileName = new Date().getTime() + '.jpeg';
         const savedFileImage = await savePicture(cameraPhoto, fileName);
         photos.value = [savedFileImage, ...photos.value];
-    };
+    }
+
+    const deletePhoto = async (filepath: string) => {
+        photos.value = photos.value.filter(e => e.filepath !== filepath)
+    }
 
 
     return {
         photos,
-        takePhoto
+        takePhoto,
+        savePhoto,
+        deletePhoto
     }
 }

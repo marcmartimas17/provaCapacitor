@@ -1,7 +1,6 @@
 <template>
   <ion-page>
 
-
     <ion-content :fullscreen="false" class="">
 
       <div v-if="currentTab === 'Tab1'">
@@ -11,12 +10,6 @@
       <div v-if="currentTab === 'Tab2'">
         <galeria :photos="photos"></galeria>
       </div>
-
-      <ion-fab slot="fixed" vertical="bottom" horizontal="end" class="fab-button  z-index-3" @click="takePhoto">
-        <ion-fab-button>
-          <ion-icon :icon="cameraOutline"></ion-icon>
-        </ion-fab-button>
-      </ion-fab>
 
     </ion-content>
 
@@ -72,7 +65,7 @@ export default {
   },
   components: {
     Galeria,
-    IonPage, IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel, IonContent, IonFabButton, IonFab, IonToolbar, CameraComponent,
+    IonPage, IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel, IonContent, IonToolbar, CameraComponent,
   },
   data() {
     return {
@@ -85,95 +78,6 @@ export default {
     async changeTab (tab) {
       this.currentTab = tab;
     },
-
-    async takePhoto () {
-
-      const cameraPhoto = await Camera.getPhoto({
-        saveToPhotoAlbum: true,
-        resultType: CameraResultType.Uri,
-        source: CameraSource.Camera,
-        encoding: FilesystemEncoding.UTF8,
-        quality: 100
-      });
-
-      const fileName = new Date().getTime() + '.jpeg';
-
-      this.currentPhoto = {
-        filepath: fileName,
-        webviewPath: cameraPhoto.webPath
-      };
-
-    },
-
-    convertBlobToBase64 (blob) {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader;
-        reader.onerror = reject;
-        reader.onload = () => {
-          resolve(reader.result);
-        }
-        reader.readAsDataURL(blob);
-      });
-    },
-
-    async savePhoto (photo) {
-      let base64Data = null;
-
-      if (isPlatform('hybrid')) {
-        const file = await Filesystem.readFile({
-          path: photo.filepath
-        });
-        base64Data = file.data;
-      } else {
-        const response = await fetch(photo.webPath);
-        const blob = await response.blob();
-        base64Data = await this.convertBlobToBase64(blob);
-      }
-
-      const savedFile = await Filesystem.writeFile({
-        path: photo.filepath,
-        data: base64Data,
-        directory: FilesystemDirectory.Documents
-      });
-
-      if (isPlatform('hybrid')) {
-          photo.filepath = savedFile.uri
-          photo.webviewPath = Capacitor.convertFileSrc(savedFile.uri)
-      }
-
-      this.photos.push(photo);
-      this.currentPhoto = null;
-
-      await Storage.set({
-        key: 'photos',
-        value: JSON.stringify(this.photos)
-      });
-    },
-
-    async loadPhotos() {
-
-      const photoList = await Storage.get({ key: 'photos' });
-      const photosInStorage = photoList ? JSON.parse(photoList.value) : [];
-      if (!isPlatform('hybrid')) {
-        for (const photo of photosInStorage) {
-          const file = await Filesystem.readFile({
-            path: photo.filepath,
-            directory: FilesystemDirectory.Documents
-          });
-
-          photo.webviewPath = `data:image/jpeg;base64,${file.data}`;
-
-        }
-      }
-
-      this.photos = photosInStorage
-
-    },
-
-  },
-
-  async mounted () {
-    await this.loadPhotos();
   }
 }
 </script>

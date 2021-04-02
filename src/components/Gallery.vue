@@ -1,15 +1,27 @@
 <template>
   <ion-page>
-    <ion-header translucent>
+    
+    <ion-header :translucent="true">
       <ion-toolbar>
         <ion-title>Galeria</ion-title>
+        <ion-buttons slot="start">
+          <ion-menu-button color="primary"></ion-menu-button>
+        </ion-buttons>
       </ion-toolbar>
     </ion-header>
+
     <ion-content>
       <ion-grid>
         <ion-row>
-          <ion-col size="4" :key="photo" v-for="photo in photos">
+          <ion-col size="12" size-md="6" size-lg="4" :key="photo" v-for="photo in photos">
             <ion-img :src="photo.webviewpath"></ion-img>
+            <div style="text-align:center">
+              <ion-button color="danger" @click="deletePhoto(photo.filepath)">
+                  <ion-icon :icon="trashOutline" class="margin-5px"></ion-icon>
+                  Delete
+              </ion-button>
+            </div>
+            
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -22,16 +34,16 @@
 import { IonPage, IonHeader, IonTitle, IonToolbar, IonContent, IonImg, IonCol, IonRow, IonGrid,
 
 } from '@ionic/vue';
-import { close, checkmarkCircleOutline, } from 'ionicons/icons';
+import { close, checkmarkCircleOutline, trashOutline } from 'ionicons/icons';
 import { usePhotoGallery } from '@/components/usePhotoGallery';
 
 export default {
   name: 'Galeria',
   setup() {
-    const { photos } = usePhotoGallery();
+    const { photos, deletePhoto } = usePhotoGallery();
 
     return {
-      close, checkmarkCircleOutline, photos
+      trashOutline, photos, deletePhoto
     }
   },
   components: {
