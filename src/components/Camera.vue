@@ -6,28 +6,19 @@
       </ion-toolbar>
     </ion-header>
     <ion-content>
-
-      <div class="center-screen" v-if="photo == null">
-        <h1>Fes una foto i guarda-la a la galeria</h1>
-      </div>
-
-      <ion-img v-if="photo != null" :src="photo.webviewPath" class="photo"></ion-img>
-      <div class="ion-text-center">
-        <ion-button v-if="photo != null" @click="savePhoto">
-          <ion-icon :icon="save" class="margin-5px"></ion-icon>
-          Guardar
-        </ion-button>
-      </div>
+      
+      <ion-button @click="takePhoto()">Get photo</ion-button>
     </ion-content>
   </ion-page>
 
 </template>
 
 <script>
-import { IonPage, IonHeader, IonTitle, IonToolbar, IonContent, IonImg, IonIcon, IonButton,
+import { IonPage, IonHeader, IonTitle, IonToolbar, IonContent, IonImg, IonButton,
 
 } from '@ionic/vue';
 import { save, } from 'ionicons/icons';
+import { usePhotoGallery } from '@/components/usePhotoGallery';
 
 export default {
   name: 'Camera',
@@ -35,17 +26,16 @@ export default {
     photo: {},
   },
   setup() {
+    const { takePhoto, photos } = usePhotoGallery();
     return {
-      save,
+      save, takePhoto, photos
     }
   },
   components: {
-    IonPage, IonHeader, IonTitle, IonToolbar, IonContent, IonImg, IonIcon, IonButton,
+    IonPage, IonHeader, IonTitle, IonToolbar, IonContent, IonButton,
   },
   methods: {
-    savePhoto () {
-      this.$emit('save-photo', this.photo);
-    }
+    
   },
 }
 </script>

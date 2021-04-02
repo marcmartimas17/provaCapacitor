@@ -8,8 +8,8 @@
     <ion-content>
       <ion-grid>
         <ion-row>
-          <ion-col size="4" :key="photo.filepath" v-for="photo in photos">
-            <ion-img :src="photo.webviewPath"></ion-img>
+          <ion-col size="4" :key="photo" v-for="photo in photos">
+            <ion-img :src="photo.webviewpath"></ion-img>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -23,17 +23,15 @@ import { IonPage, IonHeader, IonTitle, IonToolbar, IonContent, IonImg, IonCol, I
 
 } from '@ionic/vue';
 import { close, checkmarkCircleOutline, } from 'ionicons/icons';
+import { usePhotoGallery } from '@/components/usePhotoGallery';
 
 export default {
   name: 'Galeria',
-  props: {
-    photos: {
-
-    }
-  },
   setup() {
+    const { photos } = usePhotoGallery();
+
     return {
-      close, checkmarkCircleOutline
+      close, checkmarkCircleOutline, photos
     }
   },
   components: {
