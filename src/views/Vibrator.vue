@@ -10,16 +10,21 @@
     </ion-header>
     
     <ion-content :fullscreen="true">
-      <ion-button @click="vibrate()">Vibrate</ion-button>
+      
+      <div class="container">
+        <div @click="vibrate()" class="container-btn ion-text-center bounce">
+          <ion-icon :icon="fitnessOutline" class="btn"></ion-icon>
+        </div> 
+      </div>
     </ion-content>
   </ion-page>
 </template>
 
 <script lang="ts">
 import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage,
-        IonTitle, IonToolbar, IonButton, } from '@ionic/vue';
+        IonTitle, IonToolbar, } from '@ionic/vue';
 import { Plugins } from "@capacitor/core";
-import {  } from 'ionicons/icons';
+import { fitnessOutline } from 'ionicons/icons';
 
 const { Haptics } = Plugins;
 
@@ -33,7 +38,12 @@ export default {
     IonPage,
     IonTitle,
     IonToolbar,
-    IonButton,
+    
+  },
+  setup() {
+    return {
+      fitnessOutline
+    }
   },
   methods: {
     vibrate () {

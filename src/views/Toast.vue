@@ -5,22 +5,26 @@
         <ion-buttons slot="start">
           <ion-menu-button color="primary"></ion-menu-button>
         </ion-buttons>
-        <ion-title>{{ $route.params.id }}</ion-title>
+        <ion-title>Toast</ion-title>
       </ion-toolbar>
     </ion-header>
 
     <ion-content :fullscreen="true">
-      <ion-button @click="showToast()">Toast</ion-button>
+      <div class="container">
+        <div  @click="showToast()" class="container-btn ion-text-center bounce">
+          <ion-icon :icon="alertCircleOutline" class="btn"></ion-icon>
+        </div> 
+      </div>
     </ion-content>
   </ion-page>
 </template>
 
 <script lang="ts">
 import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage,
-  IonTitle, IonToolbar, IonButton, } from '@ionic/vue';
+  IonTitle, IonToolbar, } from '@ionic/vue';
 import { Plugins } from "@capacitor/core";
 const { Toast } = Plugins;
-import {  } from 'ionicons/icons';
+import { alertCircleOutline } from 'ionicons/icons';
 
 export default {
   name: 'Folder',
@@ -32,7 +36,12 @@ export default {
     IonPage,
     IonTitle,
     IonToolbar,
-    IonButton,
+    
+  },
+  setup () {
+    return {
+      alertCircleOutline
+    }
   },
   methods: {
     async showToast () {

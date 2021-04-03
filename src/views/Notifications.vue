@@ -10,32 +10,41 @@
     </ion-header>
     
     <ion-content :fullscreen="true">
-      <ion-button @click="notification">Send notification</ion-button>
+      <div class="container">
+        <div @click="notification()" class="container-btn ion-text-center bounce">
+          <ion-icon :icon="notificationsOutline" class="btn"></ion-icon>
+        </div> 
+      </div>
     </ion-content>
   </ion-page>
 </template>
 
 <script>
 import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage,
-        IonTitle, IonToolbar, IonButton,
+        IonTitle, IonToolbar, 
 } from '@ionic/vue';
 import { Plugins } from "@capacitor/core";
-import { } from "ionicons/icons";
+import { notificationsOutline } from "ionicons/icons";
 const { LocalNotifications } = Plugins;
 
 export default {
   name: 'Notifications',
   components: {
     IonButtons, IonContent, IonHeader, IonMenuButton, IonPage,
-    IonTitle, IonToolbar, IonButton,
+    IonTitle, IonToolbar, 
+  },
+  setup () {
+    return {
+      notificationsOutline
+    }
   },
   methods: {
     async notification () {
       await LocalNotifications.schedule({
         notifications: [
           {
-            title: "Prova de notificació",
-            body: "Això és una prova de notificació",
+            title: "Notificació",
+            body: "S'ha enviat la notificació",
             id: 1,
             schedule: { at: new Date(Date.now() + 1000) },
           }

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Ionic App</title>
+    <title>Capacitor App</title>
 
     <base href="/" />
 
@@ -25,6 +25,39 @@
   <body>
     <div id="app"></div>
   </body>
+  <style>
+    .container {
+      height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container-btn {
+      width: 250px;
+      height: 250px;
+      background: #3880ff;
+      border-radius: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .btn {
+      font-size: 200px;
+      width: 200px;
+      height: 200px;
+      color: aliceblue;
+    }
+    .bounce {
+        animation: bounce 1s infinite alternate;
+    }
+
+    @keyframes bounce {
+        0%   { transform: translateY(0); }
+        50%  { transform: translateY(-20px); }
+        100% { transform: translateY(0); }
+    }
+  </style>
 
 </html>
 

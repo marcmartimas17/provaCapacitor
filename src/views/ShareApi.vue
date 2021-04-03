@@ -10,14 +10,18 @@
     </ion-header>
     
     <ion-content :fullscreen="true">
-      <ion-button @click="share">Share</ion-button>
+      <div class="container">
+        <div @click="share()" class="container-btn ion-text-center bounce">
+          <ion-icon :icon="shareSocial" class="btn"></ion-icon>
+        </div> 
+      </div>
     </ion-content>
   </ion-page>
 </template>
 
 <script lang="ts">
 import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage,
-        IonTitle, IonToolbar, IonButton,
+        IonTitle, IonToolbar, 
 } from '@ionic/vue';
 import { Plugins } from "@capacitor/core";
 import { shareSocial, } from "ionicons/icons";
@@ -27,7 +31,7 @@ export default {
   name: 'Folder',
   components: {
     IonButtons, IonContent, IonHeader, IonMenuButton, IonPage,
-    IonTitle, IonToolbar, IonButton,
+    IonTitle, IonToolbar, 
   },
   setup() {
     return {
@@ -40,7 +44,7 @@ export default {
         title: 'Compartir Laravel Server',
         text: "Al següent enllaç pots trobar la web Laravel Server en producció: ",
         url: 'https://laravelserver.marcmartimas.codes/',
-        dialogTitle: "S'ha compartit correctament"
+        dialogTitle: "Compartir Laravel Server"
       });
     }
   }

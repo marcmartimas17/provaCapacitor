@@ -23,7 +23,7 @@
 
       <div v-if="currentPhoto == null" class="container">
         <div @click="takePicture()" class="container-btn ion-text-center bounce">
-          <ion-icon :icon="cameraOutline" class="camera-btn"></ion-icon>
+          <ion-icon :icon="cameraOutline" class="btn"></ion-icon>
         </div> 
       </div>
       
@@ -84,34 +84,6 @@ export default {
 .margin-5px {
   margin: 0px 10px 0px 0px;
 }
-.container {
-  height: 80vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.container-btn {
-  width: 250px;
-  height: 250px;
-  background: #3880ff;
-  border-radius: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-.camera-btn {
-  font-size: 200px;
-  color: aliceblue;
-}
-.bounce {
-    animation: bounce 1s infinite alternate;
-}
 
-@keyframes bounce {
-    0%   { transform: translateY(0); }
-    50%  { transform: translateY(-20px); }
-    100% { transform: translateY(0); }
-}
 
 </style>
