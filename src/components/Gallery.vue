@@ -36,7 +36,7 @@ import { IonPage, IonHeader, IonTitle, IonToolbar, IonContent, IonImg, IonCol, I
 
 } from '@ionic/vue';
 import { close, checkmarkCircleOutline, trashOutline } from 'ionicons/icons';
-import { usePhotoGallery } from '@/components/usePhotoGallery';
+import { usePhotoGallery } from '@/repository/usePhotoGallery';
 
 export default {
   name: 'Galeria',

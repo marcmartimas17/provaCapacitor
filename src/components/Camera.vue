@@ -37,7 +37,7 @@ import { IonPage, IonHeader, IonTitle, IonToolbar, IonContent, IonImg, IonButton
 
 } from '@ionic/vue';
 import { save, cameraOutline, arrowUndoOutline } from 'ionicons/icons';
-import { usePhotoGallery } from '@/components/usePhotoGallery';
+import { usePhotoGallery } from '@/repository/usePhotoGallery';
 
 export default {
   name: 'Camera',
