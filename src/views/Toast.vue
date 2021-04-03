@@ -21,7 +21,7 @@
 
 <script lang="ts">
 import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage,
-  IonTitle, IonToolbar, } from '@ionic/vue';
+  IonTitle, IonToolbar, IonIcon, } from '@ionic/vue';
 import { Plugins } from "@capacitor/core";
 const { Toast } = Plugins;
 import { alertCircleOutline } from 'ionicons/icons';
@@ -36,7 +36,7 @@ export default {
     IonPage,
     IonTitle,
     IonToolbar,
-    
+    IonIcon,
   },
   setup () {
     return {

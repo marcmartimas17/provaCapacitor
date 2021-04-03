@@ -32,6 +32,7 @@
 
 <script>
 import { IonPage, IonHeader, IonTitle, IonToolbar, IonContent, IonImg, IonCol, IonRow, IonGrid,
+        IonMenuButton, IonButtons, IonIcon, IonButton
 
 } from '@ionic/vue';
 import { close, checkmarkCircleOutline, trashOutline } from 'ionicons/icons';
@@ -48,6 +49,7 @@ export default {
   },
   components: {
     IonPage, IonHeader, IonTitle, IonToolbar, IonContent, IonImg, IonCol, IonRow, IonGrid,
+    IonMenuButton, IonButtons, IonIcon, IonButton
   },
   methods: {
 

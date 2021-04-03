@@ -9,8 +9,7 @@
       </ion-toolbar>
     </ion-header>
     
-    <ion-content :fullscreen="true">
-      
+    <ion-content :fullscreen="true">      
       <div class="container">
         <div @click="vibrate()" class="container-btn ion-text-center bounce">
           <ion-icon :icon="fitnessOutline" class="btn"></ion-icon>
@@ -22,7 +21,7 @@
 
 <script lang="ts">
 import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage,
-        IonTitle, IonToolbar, } from '@ionic/vue';
+        IonTitle, IonToolbar, IonIcon, } from '@ionic/vue';
 import { Plugins } from "@capacitor/core";
 import { fitnessOutline } from 'ionicons/icons';
 
@@ -38,7 +37,7 @@ export default {
     IonPage,
     IonTitle,
     IonToolbar,
-    
+    IonIcon,    
   },
   setup() {
     return {

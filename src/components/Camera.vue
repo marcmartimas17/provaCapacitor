@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { IonPage, IonHeader, IonTitle, IonToolbar, IonContent, IonImg, IonButton,
+import { IonPage, IonHeader, IonTitle, IonToolbar, IonContent, IonImg, IonButton, IonMenuButton, IonButtons, IonIcon
 
 } from '@ionic/vue';
 import { save, cameraOutline, arrowUndoOutline } from 'ionicons/icons';
@@ -57,6 +57,7 @@ export default {
   },
   components: {
     IonPage, IonHeader, IonTitle, IonToolbar, IonContent, IonImg, IonButton,
+    IonMenuButton, IonButtons, IonIcon,
   },
   methods: {
     async takePicture () {
